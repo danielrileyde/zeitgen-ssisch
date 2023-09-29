@@ -29,6 +29,7 @@ export const ArtPieces = ({ pieces }: ArtPiecesProps) => {
               artist={piece.artist}
               image={piece.imageSource}
               title={piece.name}
+              slug={piece.slug}
             />
           </li>
         );

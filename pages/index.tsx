@@ -2,6 +2,7 @@ import { ArtPieces } from "@/components/ArtPieces";
 import { useFetchData } from "@/hooks/useFetchData";
 
 export default function HomePage() {
+  // TODO - handle loading and error states
   const {
     data: pieces,
     loading,

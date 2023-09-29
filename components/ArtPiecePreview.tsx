@@ -1,18 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface ArtPiecePreviewProps {
   image: string;
   title: string;
   artist: string;
+  slug: string;
 }
 
 export const ArtPiecePreview = ({
   image,
   title,
   artist,
+  slug,
 }: ArtPiecePreviewProps) => {
   return (
-    <div>
+    <Link href={`art-pieces/${slug}`}>
       <img
         src={image}
         alt={`Art piece called ${title}, by Artist ${artist}`}
@@ -25,6 +28,6 @@ export const ArtPiecePreview = ({
           {artist}: {title}
         </h5>
       </footer>
-    </div>
+    </Link>
   );
 };
