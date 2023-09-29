@@ -1,12 +1,18 @@
+import { ArtPieces } from "@/components/ArtPieces";
 import { useFetchData } from "@/hooks/useFetchData";
 
 export default function HomePage() {
-  const { data, loading, error } = useFetchData(
-    "https://example-apis.vercel.app/api/art"
-  );
+  const {
+    data: pieces,
+    loading,
+    error,
+  } = useFetchData("https://example-apis.vercel.app/api/art");
+
+  if (!pieces) return;
+
   return (
     <div>
-      <h1>Hello from Next.js</h1>
+      <ArtPieces pieces={pieces} />
     </div>
   );
 }

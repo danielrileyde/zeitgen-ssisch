@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 /*
 useFetchData is a "custom hook (a function)" which is a reusable piece of code, which uses state and performs "side effects".
-
-
 */
 export const useFetchData = (url: string) => {
   const [data, setData] = useState();
