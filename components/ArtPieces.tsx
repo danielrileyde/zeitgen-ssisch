@@ -1,6 +1,6 @@
 import { ArtPiecePreview } from "./ArtPiecePreview";
 
-type ArtPiece = {
+export type ArtPiece = {
   slug: string;
   artist: string;
   name: string;

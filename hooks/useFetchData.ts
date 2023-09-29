@@ -6,7 +6,7 @@ useFetchData is a "custom hook (a function)" which is a reusable piece of code, 
 export const useFetchData = (url: string) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState<Error>();
 
   useEffect(() => {
     setLoading(true);
