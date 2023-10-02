@@ -24,6 +24,7 @@ export default function App({ Component, pageProps }) {
         <nav>
           <Link href="/spotlight">Spotlight</Link>
           <Link href="/">Art Pieces</Link>
+          <Link href="/favourites">Favourites</Link>
         </nav>
       </header>
       <Component

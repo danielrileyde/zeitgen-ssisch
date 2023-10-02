@@ -1,4 +1,3 @@
-import useLocalStorageState from "use-local-storage-state";
 import { ArtPiecePreview } from "./ArtPiecePreview";
 
 export type ArtPiece = {
