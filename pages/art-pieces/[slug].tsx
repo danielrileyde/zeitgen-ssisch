@@ -2,9 +2,17 @@ import { ArtPieceDetails } from "@/components/ArtPieceDetails";
 import { ArtPiece } from "@/components/ArtPieces";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function DetailsPage() {
   const { query } = useRouter();
+  const [favourites, setFavourites] = useLocalStorageState<string[]>(
+    "favourites",
+    {
+      defaultValue: [],
+    }
+  );
 
   // TODO handle loading and error states
   const {
@@ -20,14 +28,18 @@ export default function DetailsPage() {
   if (!pieces) return;
 
   const piece = pieces.find((piece) => piece.slug === query.slug);
+  const isFavourite = favourites.includes(piece.slug);
 
+  const handleFavourite = (slug: string) => {
+    isFavourite
+      ? setFavourites(favourites.filter((id) => id != slug))
+      : setFavourites([...favourites, slug]);
+  };
   return (
     <ArtPieceDetails
-      artist={piece.artist}
-      genre={piece.genre}
-      image={piece.imageSource}
-      title={piece.name}
-      year={piece.year}
+      piece={piece}
+      isFavourite={isFavourite}
+      onFavourite={handleFavourite}
     />
   );
 }
