@@ -1,3 +1,4 @@
+import useLocalStorageState from "use-local-storage-state";
 import { ArtPiecePreview } from "./ArtPiecePreview";
 
 export type ArtPiece = {
@@ -17,12 +18,19 @@ export type ArtPiece = {
 
 interface ArtPiecesProps {
   pieces: ArtPiece[];
+  favourites: string[];
+  onFavourite: (piece: ArtPiece) => void;
 }
 
-export const ArtPieces = ({ pieces }: ArtPiecesProps) => {
+export const ArtPieces = ({
+  pieces,
+  favourites,
+  onFavourite,
+}: ArtPiecesProps) => {
   return (
     <ul>
       {pieces.map((piece) => {
+        const isFavourite = favourites.includes(piece.slug);
         return (
           <li key={piece.slug}>
             <ArtPiecePreview
@@ -30,6 +38,8 @@ export const ArtPieces = ({ pieces }: ArtPiecesProps) => {
               image={piece.imageSource}
               title={piece.name}
               slug={piece.slug}
+              isFavourite={isFavourite}
+              onFavourite={() => onFavourite(piece)}
             />
           </li>
         );

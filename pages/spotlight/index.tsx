@@ -3,9 +3,18 @@ import { Spotlight } from "@/components/Spotlight";
 import { useFetchData } from "@/hooks/useFetchData";
 import { getRandomElement } from "@/utilities/general";
 
-export default function SpotlightPage() {
+interface SpotlightPageProps {
+  favourites: string[];
+  onFavourite: (piece: ArtPiece) => void;
+}
+
+export default function SpotlightPage({
+  favourites,
+  onFavourite,
+}: SpotlightPageProps) {
   // TODO - Figure out how to not have to repeat types of loading and error in typecast
   // TODO - Handle loading and error states.
+  // TODO - dont re-render page when favourites chnages.
   const {
     data: pieces,
     loading,
@@ -19,14 +28,15 @@ export default function SpotlightPage() {
   if (!pieces) return;
 
   const randomPiece = getRandomElement(pieces as []) as ArtPiece;
+  const isFavourite = favourites.includes(randomPiece.slug);
 
   return (
-    <div>
-      <Spotlight
-        image={randomPiece.imageSource}
-        artist={randomPiece.artist}
-        title={randomPiece.name}
-      />
-    </div>
+    <Spotlight
+      image={randomPiece.imageSource}
+      artist={randomPiece.artist}
+      title={randomPiece.name}
+      isFavourite={isFavourite}
+      onFavourite={() => onFavourite(randomPiece)}
+    />
   );
 }

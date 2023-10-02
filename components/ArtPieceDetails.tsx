@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ArtPiece } from "./ArtPieces";
-import useLocalStorageState from "use-local-storage-state";
-import { useState } from "react";
+import { FavouriteButton } from "./FavouriteButton";
 
 interface ArtPieceDetailsProps {
   piece: ArtPiece;
   isFavourite: boolean;
-  onFavourite: (slug: ArtPiece["slug"]) => void;
+  onFavourite: (piece: ArtPiece) => void;
 }
 
 export const ArtPieceDetails = ({
@@ -18,14 +17,10 @@ export const ArtPieceDetails = ({
     <>
       <header>
         <Link href="/">←</Link>
-        <button
-          className={`art-piece-details__favourite-button ${
-            isFavourite ? "m-is-favourite" : ""
-          }`}
-          onClick={() => onFavourite(piece.slug)}
-        >
-          ❤️
-        </button>
+        <FavouriteButton
+          isFavourite={isFavourite}
+          onFavourite={() => onFavourite(piece)}
+        />
       </header>
       <h2>{piece.name}</h2>
       {/*TODO - crate function togenerate alt comment */}
