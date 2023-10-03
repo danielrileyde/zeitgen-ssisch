@@ -1,22 +1,24 @@
 import { ArtPieceDetails } from "@/components/ArtPieceDetails";
 import { ArtPiece } from "@/components/ArtPieces";
 import { CommentForm } from "@/components/CommentForm";
+import { CommentObjType, Comments } from "@/components/Comments";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
 import useLocalStorageState from "use-local-storage-state";
-
-type Comment = {
-  id: string;
-  comments: string[];
-};
+import { uid } from "uid";
 
 export default function DetailsPage({ favourites, onFavourite }) {
   const { query } = useRouter();
 
-  const [comments, setComments] = useLocalStorageState<Comment[]>("comments", {
-    defaultValue: [],
-  });
+  const [comments, setComments] = useLocalStorageState<CommentObjType[]>(
+    "comments",
+    {
+      defaultValue: [],
+    }
+  );
+
+  const commentsForPiece = comments.find((obj) => obj.piece_id === query.slug);
 
   // TODO handle loading and error states
   const {
@@ -40,18 +42,24 @@ export default function DetailsPage({ favourites, onFavourite }) {
     const data = Object.fromEntries(formData);
 
     const comment = data.comment as string;
-    const pieceInComments = comments?.find(
-      (comment) => comment.id === piece.slug
-    );
 
-    if (pieceInComments) {
-      pieceInComments.comments = [...pieceInComments.comments, comment];
-      const index = comments.findIndex((comment) => comment.id === piece.slug);
-      comments[index] = pieceInComments;
+    if (commentsForPiece) {
+      commentsForPiece.comments = [
+        ...commentsForPiece.comments,
+        { id: uid(), text: comment },
+      ];
+      const index = comments.findIndex(
+        (comment) => comment.piece_id === piece.slug
+      );
+      comments[index] = commentsForPiece;
       setComments(comments);
     } else {
-      setComments([...comments, { id: piece.slug, comments: [comment] }]);
+      setComments([
+        ...comments,
+        { piece_id: piece.slug, comments: [{ id: uid(), text: comment }] },
+      ]);
     }
+    event.currentTarget.reset();
   };
 
   return (
@@ -62,6 +70,7 @@ export default function DetailsPage({ favourites, onFavourite }) {
         onFavourite={onFavourite}
       />
       <CommentForm onSubmit={handleSubmit} />
+      {commentsForPiece && <Comments comments={commentsForPiece} />}
     </>
   );
 }

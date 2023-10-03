@@ -30,13 +30,13 @@ export const ArtPieceDetails = ({
         src={piece.imageSource}
         alt={"placeholder"}
       />
-      {/* <ul>
+      <ul>
         {piece.colors.map((color) => {
           return (
             <span key={piece.slug} style={{ backgroundColor: color }}></span>
           );
         })}
-      </ul> */}
+      </ul>
       <span>
         {piece.artist} {piece.year} {piece.genre}
       </span>
