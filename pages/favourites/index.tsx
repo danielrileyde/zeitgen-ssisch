@@ -18,13 +18,11 @@ export const Favourites = ({ favourites, onFavourite }) => {
   );
 
   return favouritePieces.length > 0 ? (
-    <ul>
-      <ArtPieces
-        pieces={favouritePieces}
-        favourites={favourites}
-        onFavourite={onFavourite}
-      />
-    </ul>
+    <ArtPieces
+      pieces={favouritePieces}
+      favourites={favourites}
+      onFavourite={onFavourite}
+    />
   ) : (
     <p>Sorry, you dont have any favourites to display.</p>
   );

@@ -1,4 +1,5 @@
 import { ArtPiecePreview } from "./ArtPiecePreview";
+import styles from "@/styles/ArtPieces.module.css";
 
 export type ArtPiece = {
   slug: string;
@@ -27,16 +28,13 @@ export const ArtPieces = ({
   onFavourite,
 }: ArtPiecesProps) => {
   return (
-    <ul>
+    <ul className={styles.container}>
       {pieces.map((piece) => {
         const isFavourite = favourites.includes(piece.slug);
         return (
           <li key={piece.slug}>
             <ArtPiecePreview
-              artist={piece.artist}
-              image={piece.imageSource}
-              title={piece.name}
-              slug={piece.slug}
+              piece={piece}
               isFavourite={isFavourite}
               onFavourite={() => onFavourite(piece)}
             />

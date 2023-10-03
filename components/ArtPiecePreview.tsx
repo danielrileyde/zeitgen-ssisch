@@ -1,40 +1,38 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FavouriteButton } from "./FavouriteButton";
+import styles from "@/styles/ArtPiecePreview.module.css";
+import { ArtPiece } from "./ArtPieces";
 
 interface ArtPiecePreviewProps {
-  image: string;
-  title: string;
-  artist: string;
-  slug: string;
+  piece: ArtPiece;
   isFavourite: boolean;
   onFavourite: () => void;
 }
 
 export const ArtPiecePreview = ({
-  image,
-  title,
-  artist,
-  slug,
+  piece,
   isFavourite,
   onFavourite,
 }: ArtPiecePreviewProps) => {
   return (
-    <>
+    <div className={styles.container}>
       <FavouriteButton isFavourite={isFavourite} onFavourite={onFavourite} />
-      <Link href={`art-pieces/${slug}`}>
+      <Link href={`art-pieces/${piece.slug}`}>
         <img
-          src={image}
-          alt={`Art piece called ${title}, by Artist ${artist}`}
-          width={200}
-          height={200}
+          src={piece.imageSource}
+          className={styles.image}
+          alt={`Art piece called ${piece.name}, by Artist ${piece.artist}`}
+          style={{
+            maxWidth: piece.dimensions.width,
+            maxHeight: piece.dimensions.height,
+          }}
         />
       </Link>
-      <footer>
+      <footer className={styles.footer}>
         <h5>
-          {artist}: {title}
+          {piece.artist}: {piece.name}
         </h5>
       </footer>
-    </>
+    </div>
   );
 };

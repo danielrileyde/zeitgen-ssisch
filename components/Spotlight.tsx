@@ -1,30 +1,22 @@
-import { FavouriteButton } from "./FavouriteButton";
+import { ArtPiecePreview } from "./ArtPiecePreview";
+import { ArtPiece } from "./ArtPieces";
 
 interface SpotlightProps {
-  image: string;
-  artist: string;
-  title: string;
+  piece: ArtPiece;
   isFavourite: boolean;
-  onFavourite: () => void;
+  onFavourite: (piece: ArtPiece) => void;
 }
 
 export const Spotlight = ({
-  image,
-  artist,
-  title,
+  piece,
   isFavourite,
   onFavourite,
 }: SpotlightProps) => {
   return (
-    <>
-      <FavouriteButton isFavourite={isFavourite} onFavourite={onFavourite} />
-      <h2>{artist}</h2>
-      <img
-        src={image}
-        width={250}
-        height={250}
-        alt={`Art piece called ${title}, by Artist ${artist}`}
-      />
-    </>
+    <ArtPiecePreview
+      piece={piece}
+      isFavourite={isFavourite}
+      onFavourite={() => onFavourite(piece)}
+    />
   );
 };

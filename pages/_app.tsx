@@ -1,10 +1,13 @@
-import Link from "next/link";
-import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import { ArtPiece } from "@/components/ArtPieces";
 import { Header } from "@/components/Header";
+import { Layout } from "@/components/Layout";
+import { useRouter } from "next/router";
+import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
+  const { pathname } = useRouter();
+
   const [favourites, setFavourites] = useLocalStorageState<string[]>(
     "favourites",
     {
@@ -19,13 +22,14 @@ export default function App({ Component, pageProps }) {
   };
   return (
     <>
-      <GlobalStyle />
-      <Header />
-      <Component
-        {...pageProps}
-        favourites={favourites}
-        onFavourite={handleOnFavourite}
-      />
+      <Header currentPage={pathname} />
+      <Layout>
+        <Component
+          {...pageProps}
+          favourites={favourites}
+          onFavourite={handleOnFavourite}
+        />
+      </Layout>
     </>
   );
 }

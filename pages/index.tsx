@@ -21,12 +21,10 @@ export default function HomePage({ favourites, onFavourite }: HomePageProps) {
   if (!pieces) return;
 
   return (
-    <div>
-      <ArtPieces
-        pieces={pieces}
-        favourites={favourites}
-        onFavourite={onFavourite}
-      />
-    </div>
+    <ArtPieces
+      pieces={pieces}
+      favourites={favourites}
+      onFavourite={onFavourite}
+    />
   );
 }

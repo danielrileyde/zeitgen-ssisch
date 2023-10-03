@@ -1,14 +1,31 @@
 import Link from "next/link";
 import styles from "@/styles/Header.module.css";
 
-export const Header = () => {
+interface HeaderProps {
+  currentPage: string;
+}
+
+export const Header = ({ currentPage }: HeaderProps) => {
   return (
-    <header className={styles.Header}>
-      <h1>Zeitgenössisch</h1>
-      <nav>
-        <Link href="/spotlight">Spotlight</Link>
-        <Link href="/">Art Pieces</Link>
-        <Link href="/favourites">Favourites</Link>
+    <header className={styles.header}>
+      <div className={styles.ghost}></div>
+      <h1 className={styles.title}>Zeitgenössisch</h1>
+      <nav className={styles.nav}>
+        <Link
+          className={currentPage === "/spotlight" ? styles.active : ""}
+          href="/spotlight"
+        >
+          Spotlight
+        </Link>
+        <Link className={currentPage === "/" ? styles.active : ""} href="/">
+          Art Pieces
+        </Link>
+        <Link
+          className={currentPage === "/favourites" ? styles.active : ""}
+          href="/favourites"
+        >
+          Favourites
+        </Link>
       </nav>
     </header>
   );

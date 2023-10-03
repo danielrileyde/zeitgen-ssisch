@@ -32,9 +32,7 @@ export default function SpotlightPage({
 
   return (
     <Spotlight
-      image={randomPiece.imageSource}
-      artist={randomPiece.artist}
-      title={randomPiece.name}
+      piece={randomPiece}
       isFavourite={isFavourite}
       onFavourite={() => onFavourite(randomPiece)}
     />
