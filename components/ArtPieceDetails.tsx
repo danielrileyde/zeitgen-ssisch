@@ -32,8 +32,18 @@ export const ArtPieceDetails = ({
       />
       <ul>
         {piece.colors.map((color) => {
+          console.log("colours: ", color);
           return (
-            <span key={piece.slug} style={{ backgroundColor: color }}></span>
+            <span
+              key={color}
+              // TODO - use styled component
+              style={{
+                backgroundColor: color,
+                width: "32px",
+                height: "32px",
+                display: "inline-block",
+              }}
+            />
           );
         })}
       </ul>
