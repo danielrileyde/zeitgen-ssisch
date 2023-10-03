@@ -1,3 +1,5 @@
+import styles from "@/styles/Comments.module.css";
+
 type Comment = {
   id: string;
   text: string;
@@ -14,10 +16,19 @@ interface CommentsProps {
 
 export const Comments = ({ comments: commentsObject }: CommentsProps) => {
   return (
-    <ul>
-      {commentsObject.comments.map((comment) => {
-        return <p key={comment.id}>{comment.text}</p>;
-      })}
-    </ul>
+    <div className={styles.container}>
+      <h4>Comments</h4>
+      <ol className={styles.list__container}>
+        {commentsObject.comments.map((comment, index) => {
+          return (
+            <li key={comment.id}>
+              <p>
+                {index}. {comment.text}
+              </p>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 };

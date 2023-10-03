@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArtPiecePreview } from "./ArtPiecePreview";
 import { ArtPiece } from "./ArtPieces";
 
@@ -13,10 +14,12 @@ export const Spotlight = ({
   onFavourite,
 }: SpotlightProps) => {
   return (
-    <ArtPiecePreview
-      piece={piece}
-      isFavourite={isFavourite}
-      onFavourite={() => onFavourite(piece)}
-    />
+    <Link href={`art-pieces/${piece.slug}`}>
+      <ArtPiecePreview
+        piece={piece}
+        isFavourite={isFavourite}
+        onFavourite={() => onFavourite(piece)}
+      />
+    </Link>
   );
 };

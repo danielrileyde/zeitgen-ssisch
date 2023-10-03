@@ -1,0 +1,16 @@
+.input {
+  width: 100%;
+  border: 1px solid black;
+  margin: 16px 0 0;
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.button {
+  margin: 8px 0 0;
+  padding: 12px 16px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+}

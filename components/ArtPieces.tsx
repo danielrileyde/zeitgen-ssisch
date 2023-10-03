@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArtPiecePreview } from "./ArtPiecePreview";
 import styles from "@/styles/ArtPieces.module.css";
 
@@ -33,11 +34,13 @@ export const ArtPieces = ({
         const isFavourite = favourites.includes(piece.slug);
         return (
           <li key={piece.slug}>
-            <ArtPiecePreview
-              piece={piece}
-              isFavourite={isFavourite}
-              onFavourite={() => onFavourite(piece)}
-            />
+            <Link href={`art-pieces/${piece.slug}`}>
+              <ArtPiecePreview
+                piece={piece}
+                isFavourite={isFavourite}
+                onFavourite={() => onFavourite(piece)}
+              />
+            </Link>
           </li>
         );
       })}

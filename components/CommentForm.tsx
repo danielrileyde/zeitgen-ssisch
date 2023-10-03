@@ -1,4 +1,5 @@
 import { FormEvent } from "react";
+import styles from "@/styles/CommentForm.module.css";
 
 interface CommentFormProps {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
@@ -7,14 +8,17 @@ interface CommentFormProps {
 export const CommentForm = ({ onSubmit }: CommentFormProps) => {
   return (
     <form onSubmit={onSubmit}>
-      <label htmlFor="textarea">Add comment:</label>
+      <label htmlFor="textarea">
+        <h4>Add comment</h4>
+      </label>
       <input
         id="textarea"
+        className={styles.input}
         name="comment"
         required
         placeholder="Leave your comment here..."
       />
-      <button>Send</button>
+      <button className={styles.button}>Send</button>
     </form>
   );
 };

@@ -12,7 +12,13 @@ export const FavouriteButton = ({
 }: FavouriteButtonProps) => {
   const fill = isFavourite ? "#ff0000" : "#999";
   return (
-    <button className={styles.button} onClick={onFavourite}>
+    <button
+      className={styles.button}
+      onClick={(e) => {
+        e.stopPropagation();
+        onFavourite();
+      }}
+    >
       <HeartIcon style={{ width: "24px", height: "24px", fill: fill }} />
     </button>
   );

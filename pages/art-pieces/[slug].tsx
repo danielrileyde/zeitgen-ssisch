@@ -6,6 +6,7 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import styles from "@/styles/DetailsPage.module.css";
 import { uid } from "uid";
 
 export default function DetailsPage({ favourites, onFavourite }) {
@@ -69,8 +70,10 @@ export default function DetailsPage({ favourites, onFavourite }) {
         isFavourite={isFavourite}
         onFavourite={onFavourite}
       />
-      <CommentForm onSubmit={handleSubmit} />
-      {commentsForPiece && <Comments comments={commentsForPiece} />}
+      <div className={styles.comments}>
+        <CommentForm onSubmit={handleSubmit} />
+        {commentsForPiece && <Comments comments={commentsForPiece} />}
+      </div>
     </>
   );
 }

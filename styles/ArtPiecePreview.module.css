@@ -34,3 +34,26 @@
   padding: 8px;
   border-radius: 0 0 8px 8px;
 }
+
+.details {
+  margin: 8px 0 0;
+}
+
+.list {
+  margin: 4px 0 0;
+}
+
+.color__container {
+  margin: 8px 0 0;
+}
+
+.color {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.color:nth-child(n + 2) {
+  margin: 0 0 0 8px;
+}

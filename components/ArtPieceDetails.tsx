@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { ArtPiece } from "./ArtPieces";
-import { FavouriteButton } from "./FavouriteButton";
+import { ArtPiecePreview } from "./ArtPiecePreview";
 
 interface ArtPieceDetailsProps {
   piece: ArtPiece;
@@ -14,42 +13,11 @@ export const ArtPieceDetails = ({
   onFavourite,
 }: ArtPieceDetailsProps) => {
   return (
-    <>
-      <header>
-        <Link href="/">←</Link>
-        <FavouriteButton
-          isFavourite={isFavourite}
-          onFavourite={() => onFavourite(piece)}
-        />
-      </header>
-      <h2>{piece.name}</h2>
-      {/*TODO - crate function togenerate alt comment */}
-      <img
-        width={200}
-        height={200}
-        src={piece.imageSource}
-        alt={"placeholder"}
-      />
-      <ul>
-        {piece.colors.map((color) => {
-          console.log("colours: ", color);
-          return (
-            <span
-              key={color}
-              // TODO - use styled component
-              style={{
-                backgroundColor: color,
-                width: "32px",
-                height: "32px",
-                display: "inline-block",
-              }}
-            />
-          );
-        })}
-      </ul>
-      <span>
-        {piece.artist} {piece.year} {piece.genre}
-      </span>
-    </>
+    <ArtPiecePreview
+      piece={piece}
+      isFavourite={isFavourite}
+      onFavourite={() => onFavourite(piece)}
+      showDetails
+    />
   );
 };
