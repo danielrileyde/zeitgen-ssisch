@@ -2,6 +2,7 @@ import Link from "next/link";
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import { ArtPiece } from "@/components/ArtPieces";
+import { Header } from "@/components/Header";
 
 export default function App({ Component, pageProps }) {
   const [favourites, setFavourites] = useLocalStorageState<string[]>(
@@ -19,14 +20,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <header>
-        <h1>Zeitgenössisch</h1>
-        <nav>
-          <Link href="/spotlight">Spotlight</Link>
-          <Link href="/">Art Pieces</Link>
-          <Link href="/favourites">Favourites</Link>
-        </nav>
-      </header>
+      <Header />
       <Component
         {...pageProps}
         favourites={favourites}
