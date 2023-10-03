@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 80px;
+  height: var(--header-height);
   padding: 16px;
   position: fixed;
   top: 0;
