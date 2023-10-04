@@ -1,12 +1,14 @@
 import { FavouriteButton } from "./FavouriteButton";
 import styles from "@/styles/ArtPiecePreview.module.css";
 import { ArtPiece } from "./ArtPieces";
+import { CSSProperties } from "react";
 
 interface ArtPiecePreviewProps {
   piece: ArtPiece;
   isFavourite: boolean;
   onFavourite: () => void;
   showDetails?: boolean;
+  imageStyles?: CSSProperties;
 }
 
 export const ArtPiecePreview = ({
@@ -14,6 +16,7 @@ export const ArtPiecePreview = ({
   showDetails,
   isFavourite,
   onFavourite,
+  imageStyles,
 }: ArtPiecePreviewProps) => {
   return (
     <div className={styles.container}>
@@ -22,10 +25,7 @@ export const ArtPiecePreview = ({
         src={piece.imageSource}
         className={styles.image}
         alt={`Art piece called ${piece.name}, by Artist ${piece.artist}`}
-        style={{
-          maxWidth: piece.dimensions.width,
-          maxHeight: piece.dimensions.height,
-        }}
+        style={imageStyles}
       />
       <footer className={styles.footer}>
         <h4>{piece.name}</h4>

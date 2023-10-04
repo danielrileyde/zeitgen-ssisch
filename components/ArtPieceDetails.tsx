@@ -18,6 +18,7 @@ export const ArtPieceDetails = ({
       isFavourite={isFavourite}
       onFavourite={() => onFavourite(piece)}
       showDetails
+      imageStyles={{ maxHeight: "50vh" }}
     />
   );
 };

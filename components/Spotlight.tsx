@@ -19,6 +19,7 @@ export const Spotlight = ({
         piece={piece}
         isFavourite={isFavourite}
         onFavourite={() => onFavourite(piece)}
+        imageStyles={{ maxHeight: "50vh" }}
       />
     </Link>
   );

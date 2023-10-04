@@ -10,13 +10,12 @@ export const FavouriteButton = ({
   isFavourite,
   onFavourite,
 }: FavouriteButtonProps) => {
-  const fill = isFavourite ? "#ff0000" : "#fff";
-  const stroke = isFavourite ? "#ff7070" : "#fff";
+  const fill = isFavourite ? "#ff0000" : "#999";
   return (
     <button
       className={styles.button}
       onClick={(e) => {
-        e.stopPropagation();
+        e.preventDefault();
         onFavourite();
       }}
     >
@@ -25,7 +24,6 @@ export const FavouriteButton = ({
           width: "30px",
           height: "30px",
           fill: fill,
-          stroke: stroke,
         }}
       />
     </button>

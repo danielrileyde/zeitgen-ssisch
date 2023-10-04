@@ -4,13 +4,12 @@
   justify-content: flex-end;
   align-items: center;
   height: var(--header-height);
-  padding: 16px;
+  padding: 0 32px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
   background-color: white;
-  /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.25); */
 }
 
 .ghost {
