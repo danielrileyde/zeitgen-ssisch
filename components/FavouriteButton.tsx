@@ -10,7 +10,8 @@ export const FavouriteButton = ({
   isFavourite,
   onFavourite,
 }: FavouriteButtonProps) => {
-  const fill = isFavourite ? "#ff0000" : "#999";
+  const fill = isFavourite ? "#ff0000" : "#fff";
+  const stroke = isFavourite ? "#ff7070" : "#fff";
   return (
     <button
       className={styles.button}
@@ -19,7 +20,14 @@ export const FavouriteButton = ({
         onFavourite();
       }}
     >
-      <HeartIcon style={{ width: "24px", height: "24px", fill: fill }} />
+      <HeartIcon
+        style={{
+          width: "30px",
+          height: "30px",
+          fill: fill,
+          stroke: stroke,
+        }}
+      />
     </button>
   );
 };

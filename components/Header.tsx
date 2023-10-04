@@ -9,7 +9,7 @@ export const Header = ({ currentPage }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.ghost}></div>
-      <h1 className={styles.title}>Zeitgenössisch</h1>
+      <h1 className={styles.title}>zeit_genossen</h1>
       <nav className={styles.nav}>
         <Link
           className={currentPage === "/spotlight" ? styles.active : ""}
