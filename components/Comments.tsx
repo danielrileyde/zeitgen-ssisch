@@ -3,6 +3,7 @@ import styles from "@/styles/Comments.module.css";
 type Comment = {
   id: string;
   text: string;
+  date: Date;
 };
 
 export type CommentObjType = {
@@ -23,7 +24,7 @@ export const Comments = ({ comments: commentsObject }: CommentsProps) => {
           return (
             <li key={comment.id}>
               <p>
-                {index}. {comment.text}
+                {index}. {comment.text} {comment.date.toDateString()}
               </p>
             </li>
           );

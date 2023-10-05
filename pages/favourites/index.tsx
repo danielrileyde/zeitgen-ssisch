@@ -1,30 +1,19 @@
 import { ArtPiece, ArtPieces } from "@/components/ArtPieces";
-import { useFetchData } from "@/hooks/useFetchData";
 
-export const Favourites = ({ favourites, onFavourite }) => {
-  const {
-    data: pieces,
-    loading,
-    error,
-  } = useFetchData("https://example-apis.vercel.app/api/art") as {
-    data: ArtPiece[];
-    loading: boolean;
-    error: Error;
-  };
-
-  if (!pieces) return;
-  const favouritePieces = pieces.filter((piece) =>
+export const Favourites = ({ pieces, favourites, onFavourite }) => {
+  const favouritePieces = pieces.filter((piece: ArtPiece) =>
     favourites.includes(piece.slug)
   );
 
-  return favouritePieces.length > 0 ? (
+  if (!favouritePieces.length)
+    return <p>Sorry, you dont have any favourites to display.</p>;
+
+  return (
     <ArtPieces
       pieces={favouritePieces}
       favourites={favourites}
       onFavourite={onFavourite}
     />
-  ) : (
-    <p>Sorry, you dont have any favourites to display.</p>
   );
 };
 export default Favourites;

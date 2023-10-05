@@ -1,23 +1,16 @@
 import { ArtPiece, ArtPieces } from "@/components/ArtPieces";
-import { useFetchData } from "@/hooks/useFetchData";
 
 interface HomePageProps {
+  pieces: ArtPiece[];
   favourites: string[];
   onFavourite: (piece: ArtPiece) => void;
 }
 
-export default function HomePage({ favourites, onFavourite }: HomePageProps) {
-  // TODO - handle loading and error states
-  const {
-    data: pieces,
-    loading,
-    error,
-  } = useFetchData("https://example-apis.vercel.app/api/art") as {
-    data: ArtPiece[];
-    loading: boolean;
-    error: Error;
-  };
-
+export default function HomePage({
+  pieces,
+  favourites,
+  onFavourite,
+}: HomePageProps) {
   if (!pieces) return;
 
   return (

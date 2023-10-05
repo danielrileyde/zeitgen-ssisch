@@ -4,7 +4,7 @@ import { ArtPiecePreview } from "./ArtPiecePreview";
 interface ArtPieceDetailsProps {
   piece: ArtPiece;
   isFavourite: boolean;
-  onFavourite: (piece: ArtPiece) => void;
+  onFavourite: (piece: ArtPiece, isFavourite: boolean) => void;
 }
 
 export const ArtPieceDetails = ({
@@ -16,7 +16,7 @@ export const ArtPieceDetails = ({
     <ArtPiecePreview
       piece={piece}
       isFavourite={isFavourite}
-      onFavourite={() => onFavourite(piece)}
+      onFavourite={() => onFavourite(piece, isFavourite)}
       showDetails
       imageStyles={{ maxHeight: "50vh" }}
     />

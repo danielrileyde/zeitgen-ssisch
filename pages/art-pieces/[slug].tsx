@@ -1,15 +1,18 @@
-import { ArtPieceDetails } from "@/components/ArtPieceDetails";
-import { ArtPiece } from "@/components/ArtPieces";
-import { CommentForm } from "@/components/CommentForm";
 import { CommentObjType, Comments } from "@/components/Comments";
-import { useFetchData } from "@/hooks/useFetchData";
-import { useRouter } from "next/router";
-import { FormEvent } from "react";
+import { ArtPieceDetails } from "@/components/ArtPieceDetails";
 import useLocalStorageState from "use-local-storage-state";
+import { CommentForm } from "@/components/CommentForm";
 import styles from "@/styles/DetailsPage.module.css";
+import { useRouter } from "next/router";
+import { PageProps } from "../_app";
+import { FormEvent } from "react";
 import { uid } from "uid";
 
-export default function DetailsPage({ favourites, onFavourite }) {
+export default function DetailsPage({
+  pieces,
+  favourites,
+  onFavourite,
+}: PageProps) {
   const { query } = useRouter();
 
   const [comments, setComments] = useLocalStorageState<CommentObjType[]>(
@@ -22,17 +25,6 @@ export default function DetailsPage({ favourites, onFavourite }) {
   const commentsForPiece = comments.find((obj) => obj.piece_id === query.slug);
 
   // TODO handle loading and error states
-  const {
-    data: pieces,
-    loading,
-    error,
-  } = useFetchData("https://example-apis.vercel.app/api/art") as {
-    data: ArtPiece[];
-    loading: boolean;
-    error: Error;
-  };
-
-  if (!pieces) return;
 
   const piece = pieces.find((piece) => piece.slug === query.slug);
   const isFavourite = favourites.includes(piece.slug);
@@ -47,7 +39,7 @@ export default function DetailsPage({ favourites, onFavourite }) {
     if (commentsForPiece) {
       commentsForPiece.comments = [
         ...commentsForPiece.comments,
-        { id: uid(), text: comment },
+        { id: uid(), text: comment, date: new Date() },
       ];
       const index = comments.findIndex(
         (comment) => comment.piece_id === piece.slug
@@ -57,7 +49,10 @@ export default function DetailsPage({ favourites, onFavourite }) {
     } else {
       setComments([
         ...comments,
-        { piece_id: piece.slug, comments: [{ id: uid(), text: comment }] },
+        {
+          piece_id: piece.slug,
+          comments: [{ id: uid(), text: comment, date: new Date() }],
+        },
       ]);
     }
     event.currentTarget.reset();

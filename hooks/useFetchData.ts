@@ -20,6 +20,7 @@ export const useFetchData = (url: string) => {
           setData(data);
         })
         .catch((err) => {
+          console.log(err);
           setError(err);
         })
         .finally(() => {

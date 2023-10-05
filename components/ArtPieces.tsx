@@ -20,7 +20,7 @@ export type ArtPiece = {
 interface ArtPiecesProps {
   pieces: ArtPiece[];
   favourites: string[];
-  onFavourite: (piece: ArtPiece) => void;
+  onFavourite: (piece: ArtPiece, isFavourite: boolean) => void;
 }
 
 export const ArtPieces = ({
@@ -38,7 +38,7 @@ export const ArtPieces = ({
               <ArtPiecePreview
                 piece={piece}
                 isFavourite={isFavourite}
-                onFavourite={() => onFavourite(piece)}
+                onFavourite={() => onFavourite(piece, isFavourite)}
               />
             </Link>
           </li>
